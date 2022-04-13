@@ -1,0 +1,22 @@
+O que vai rolar?
+                1) Praticar
+                2) Revisão
+                3) Update
+                4) Novos temas
+Criação de uma aplicação Spring Boot
+Criar ApiRest com spring boot
+Relacionamento OneToMany
+• Relacionamento ManyToMany
+• Relacionamento ManyToMany com atributos
+• PostMan
+• Swagger
+• Paginação
+• Versionamento de API
+• Versionamento de banco de dados com flyway
+• Download e upload de arquivos
+Thymeleaf
+• Autenticação
+• Autorização
+Integração com front-end
+• Docker
+• Git

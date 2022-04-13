@@ -1,0 +1,18 @@
+package br.com.nava.dtos;
+
+import org.modelmapper.ModelMapper;
+
+import br.com.nava.entities.EnderecoEntity;
+import br.com.nava.entities.ProfessorEntity;
+
+public class EnderecoDTO {
+	
+	
+public EnderecoEntity toEntity() {
+		
+		ModelMapper mapper = new ModelMapper();
+		
+		return mapper.map(this, EnderecoEntity.class);
+	}
+
+}

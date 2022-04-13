@@ -1,0 +1,41 @@
+package br.com.nava.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import br.com.nava.entities.EnderecoEntity;
+import br.com.nava.entities.ProdutoEntity;
+import br.com.nava.repositories.EnderecoRepository;
+import br.com.nava.repositories.ProdutoRepository;
+
+public class ProdutoService {
+
+	@Autowired 
+	private ProdutoRepository produtoRepository;
+	
+	public  List<ProdutoEntity> getAll(){
+		return produtoRepository.findAll();
+		}
+	public ProdutoEntity getOne(int id) {
+		return ProdutoRepository.findById(id).orElse(new ProdutoEntity());
+	}
+	
+	public ProdutoEntity update(int id, ProdutoEntity noovProdutoEntity) {
+		
+		if(optinal.isPresent()) {
+			ProdutoEntity produto = optional.get();
+			
+			produto.setDescricao( novoProduto.getDescricao() );
+			produto.setNome( novoProduto.getNome() );			
+			produto.setPreco( novoProduto.getPreco() );
+			
+			return produtoRepository.save(produto);
+		}else {
+			return new ProdutoEntity();
+			
+			
+		}
+	}
+}

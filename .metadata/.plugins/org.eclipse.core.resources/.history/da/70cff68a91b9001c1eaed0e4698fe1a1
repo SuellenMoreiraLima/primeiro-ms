@@ -1,0 +1,22 @@
+package br.com.nava.dtos;
+
+import br.com.nava.entities.ProfessorEntity;
+
+public class ProfessorDTO {
+	
+	
+	private int id;
+	private String nome;
+	private String cpf;
+	private String rua;
+	private String cep;
+	private int numero;   
+	
+	public ProfessorEntity toEntity() {
+		
+		ModelMapper mapper = new ModelMapper();
+		
+		return mapper.map(this, ProfessorEntity.class);
+	}
+
+}
