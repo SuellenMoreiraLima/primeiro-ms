@@ -1,127 +1,70 @@
 package br.com.nava.services;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import br.com.nava.dtos.ProfessorDTO;
 import br.com.nava.entities.ProfessorEntity;
+import br.com.nava.repositories.ProfessorRepository;
 
-//@DataJpaTest
-//permite manipular o banco de dados com rollback (desfazer uma operação)
-
-@DataJpaTest
 @ExtendWith(SpringExtension.class)
-public class ProfessorRepositoryTests {
-
+@SpringBootTest
+@AutoConfigureMockMvc
+public class ProfessorServiceTests {
+	
 	@Autowired
+	private ProfessorService professorService;
+	
+	
+	// a anotação @MockBean serve para sinalizar que iremos 
+		// "MOCKAR(SIMULAR) a camada repository"
+	@MockBean
 	private ProfessorRepository professorRepository;
 	
-	@Autowired
-	private TestEntityManager testEntityManager;
 	
 	@Test
-	void findByIdWhenFoundTest() {
+	void getAllTest() {
 		
-		ProfessorEntity professorEntidade = createValidProfessor();
 		
-		// vai persistir a entidade no banco de dados para testar o findById
-		// ao final do testes, esta entidade será deletada
-		testEntityManager.persist(professorEntidade);
+		professorService.getAll();
 		
-		// buscar a entidade no banco de dados para testar o findById
-		
-		// execução do findById
-		Optional<ProfessorEntity> professor = professorRepository.findById( professorEntidade.getId() );
-		
-		// validando a respota - se o objeto encontrado não é nulo
-		assertThat( professor ).isNotNull();
-	}
+		// vamos criar uma lista de entidade de professor com o objeto
+		// de retornar a mesma quando o professorRepository.findAll() 
+		// for acionado
 	
-	@Test
-	void findByIdWhenNotFoundTest() {
-		
-		// buscar uma entidade na qual não existe no banco de dados
-		Optional<ProfessorEntity> professor = professorRepository.findById(1);
-		
-		// temos que verificar se o opcional não possui valores, ou seja, isPresent() possui valor falso
-		assertThat( professor.isPresent() ).isFalse();		
-	}
+		List<ProfessorEntity> listaMockada = new ArrayList<ProfessorEntity>();
 	
-	@Test
-	void findAllTest() {
-		
-		ProfessorEntity professorEntidade = createValidProfessor();
-		
-		// salvando temporariamente o professor no banco de dados
-		testEntityManager.persist(professorEntidade);
-		
-		//execução		
-		List<ProfessorEntity> professores = this.professorRepository.findAll();
-		
-		// verificar
-		assertThat( professores.size() ).isEqualTo(1);
-	}
-	
-	@Test
-	void saveTest() {
-		
-		ProfessorEntity professorEntidade = createValidProfessor();
-		
-		// salvando temporariamente o professor no banco de dados
-		testEntityManager.persist(professorEntidade);
-		
-		//execução
-		ProfessorEntity professorSalvo = professorRepository.save(professorEntidade);
-		
-		//validação
-		assertThat( professorSalvo.getId() ).isNotNull();
-		assertThat( professorSalvo.getCep() ).isEqualTo( professorEntidade.getCep() );
-		assertThat( professorSalvo.getNome() ).isEqualTo( professorEntidade.getNome() );
-		assertThat( professorSalvo.getNumero() ).isEqualTo( professorEntidade.getNumero() );
-		assertThat( professorSalvo.getRua() ).isEqualTo( professorEntidade.getRua() );	
-	}
-	
-	@Test
-	void deleteById() {
-		
-		ProfessorEntity professorEntidade = createValidProfessor();
-		
-		// salvando temporariamente o professor no banco de dados
-		ProfessorEntity professorTemporario = testEntityManager.persist(professorEntidade);
-		
-		//execução
-		professorRepository.deleteById( professorTemporario.getId() );
-		
-		// verificação
-		//busquei o professor deletado e comparei a resposta 
-		
-		Optional<ProfessorEntity> deletado = professorRepository.findById( professorTemporario.getId() );
-		
-		assertThat( deletado.isPresent() ).isFalse();
-	}
-	
-	private ProfessorEntity createValidProfessor() {
-		
-		// instanciando o novo objeto do tipo ProfessorEntity
 		ProfessorEntity professorEntidade = new ProfessorEntity();
-		
-		// colocando valores nos atributos de ProfessorEntity
-		professorEntidade.setCep("04567895");
+		professorEntidade.setCep("08690330");
 		professorEntidade.setNome("Professor Teste");
 		professorEntidade.setNumero(3);
-		professorEntidade.setRua("Rua de Teste");
-		//professorEntidade.setId(1);
+		professorEntidade.setRua("Rua de teste");
+		professorEntidade.setId(1);
 		
-		// retornando este novo objeto criado
-		return professorEntidade;
+		listaMockada.add(professorEntidade);
+		
+		// quando o repository for acionado, retorno a lista Mockada
+		when(professorRepository.findAll()).thenReturn(listaMockada);
+		
+		List<ProfessorDTO> retorno = professorService.getAll();
+		
+		assertThat(listaMockada.get(0).getCep()).isEqualTo(retorno.get(0).getCep());
+		assertThat(listaMockada.get(0).getNome()).isEqualTo(retorno.get(0).getNome());
+		assertThat(listaMockada.get(0).getNumero()).isEqualTo(retorno.get(0).getNumero());
+		assertThat(listaMockada.get(0).getRua()).isEqualTo(retorno.get(0).getRua());
+		assertThat(listaMockada.get(0).getId()).isEqualTo(retorno.get(0).getId());
+		
 	}
+
 }
