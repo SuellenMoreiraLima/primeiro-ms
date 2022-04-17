@@ -43,8 +43,8 @@ public class UsuarioController {
 		return usuarioService.getAll();	
 		}	
 	
-	@GetMapping("{id}")
 	//@GetMapping("usuarios/{id}")
+	@GetMapping("{id}")
 	public UsuarioEntity getOne(@PathVariable Integer id) {
 		System.out.println(id);
 		//array.length
@@ -58,8 +58,8 @@ public class UsuarioController {
 		return usuarioService.getOne(id);
 	}
 	
-	@PostMapping("")
 	//@PostMapping("usuarios")
+	@PostMapping("")
 	public UsuarioEntity save(@RequestBody UsuarioEntity usuario) {
 		
 	//	System.out.println(usuario);

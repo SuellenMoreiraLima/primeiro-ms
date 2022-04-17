@@ -24,7 +24,7 @@ public class ProfessorDTO {
 	@NotEmpty(message = "Preenchimento obrigatório")
 	@NotNull(message = "Preenchimento obrigatório")
 	@Length(min = 3, max = 80, message = "O número de caracteres deve ser entre 3 e 80")
-	@Pattern( regexp = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]*$", message = "É valido apenas caracteres")
+	@Pattern( regexp = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*$", message = "É valido apenas caracteres")
 	private String nome;
 	
 	private String cpf;
