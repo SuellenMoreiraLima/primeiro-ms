@@ -43,7 +43,7 @@ public class ProfessorController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<ProfessorEntity> getOne(@PathVariable int id) {
+	public ResponseEntity<ProfessorDTO> getOne(@PathVariable int id) {
 		
 //		for (int i = 0; i < listaProfessor.size(); i++) {
 //			if (listaProfessor.get(i).getId() == id) {
@@ -63,7 +63,7 @@ public class ProfessorController {
 	}
 	
 	@PostMapping()
-	public ResponseEntity<ProfessorEntity> save(@Valid @RequestBody ProfessorDTO professor) {
+	public ResponseEntity<ProfessorDTO> save(@Valid @RequestBody ProfessorDTO professor) {
 		
 //		professor.setId(contador);
 //		//contador++;
@@ -76,7 +76,7 @@ public class ProfessorController {
 	}
 	
 	@PatchMapping("{id}")
-	public ResponseEntity<ProfessorEntity> update(@PathVariable int id, 
+	public ResponseEntity<ProfessorDTO> update(@PathVariable int id, 
 			@RequestBody ProfessorDTO professor) {
 		
 //		for (int i = 0; i < listaProfessor.size(); i++) {

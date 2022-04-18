@@ -36,16 +36,17 @@ public class ProfessorService {
 		// - 3 lista com elementos a ser percorrido
 		for (ProfessorEntity professorEntity : lista) {						
 			
-			ProfessorDTO dto = new ProfessorDTO();
+//			ProfessorDTO dto = new ProfessorDTO();
 			
-			dto.setId( professorEntity.getId() );
-			dto.setCep( professorEntity.getCep() );
-			dto.setCpf( professorEntity.getCpf() );
-			dto.setNome( professorEntity.getNome() );
-			dto.setNumero( professorEntity.getNumero() );
-			dto.setRua( professorEntity.getRua() );
-			
-			listaDTO.add(dto);
+//			dto.setId( professorEntity.getId() );
+//			dto.setCep( professorEntity.getCep() );
+//			dto.setCpf( professorEntity.getCpf() );
+//			dto.setNome( professorEntity.getNome() );
+//			dto.setNumero( professorEntity.getNumero() );
+//			dto.setRua( professorEntity.getRua() );
+//			
+//			listaDTO.add(dto);
+			listaDTO.add(professorEntity.toDTO());
 		}
 		
 		return listaDTO;		
@@ -57,17 +58,17 @@ public class ProfessorService {
 //		return (indice >= 0 ? listaProfessor.get(indice) : null);
 //	}
 	
-	public ProfessorEntity getOne(int id) {
+	public ProfessorDTO getOne(int id) {
 		
 		Optional<ProfessorEntity> optional = professorRepository.findById(id);
 		
 		ProfessorEntity professor = optional.orElse( new ProfessorEntity() );
 		
-		return professor;
+		return professor.toDTO();
 	}
 	
-	public ProfessorEntity save(ProfessorEntity professor) {
-		return professorRepository.save(professor);
+	public ProfessorDTO save(ProfessorEntity professor) {
+		return professorRepository.save(professor).toDTO();
 	}
 	
 //	public int findIndex(int id, ArrayList<ProfessorEntity> listaProfessor) {
@@ -100,7 +101,7 @@ public class ProfessorService {
 //		return null;
 //	}
 	
-	public ProfessorEntity update(int id, ProfessorEntity professor) {
+	public ProfessorDTO update(int id, ProfessorEntity professor) {
 	
 		// primeiro passo é verificar se o registro existe no banco de dados
 		
@@ -115,11 +116,11 @@ public class ProfessorService {
 			professorBD.setNumero( professor.getNumero() );
 			professorBD.setRua( professor.getRua() );
 			
-			return professorRepository.save(professorBD);
+			return professorRepository.save(professorBD).toDTO();
 		}
 		// caso contrário, retorna um objeto vazio
 		else {
-			return new ProfessorEntity();
+			return new ProfessorEntity().toDTO();
 		}
 	}
 	

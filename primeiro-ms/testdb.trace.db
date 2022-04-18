@@ -5013,3 +5013,69 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
        add constraint FKhxh84cyr5bifvnaq6iyys5wrc 
        foreign key (produto_id) 
        references produtos [42001-200]
+2022-04-17 21:22:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE VENDA PRODUTO[*] (
+       PRODUTO_ID INTEGER NOT NULL,
+        VENDA_ID INTEGER NOT NULL
+    )"; SQL statement:
+
+    create table venda produto (
+       produto_id integer not null,
+        venda_id integer not null
+    ) [42000-200]
+2022-04-17 21:22:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    ALTER TABLE VENDA PRODUTO[*] 
+       ADD CONSTRAINT FKN6VF0SILK4NV15YPWAPMX1MH7 
+       FOREIGN KEY (VENDA_ID) 
+       REFERENCES VENDAS"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+
+    alter table venda produto 
+       add constraint FKn6vf0silk4nv15ypwapmx1mh7 
+       foreign key (venda_id) 
+       references vendas [42001-200]
+2022-04-17 21:22:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    ALTER TABLE VENDA PRODUTO[*] 
+       ADD CONSTRAINT FKHXH84CYR5BIFVNAQ6IYYS5WRC 
+       FOREIGN KEY (PRODUTO_ID) 
+       REFERENCES PRODUTOS"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+
+    alter table venda produto 
+       add constraint FKhxh84cyr5bifvnaq6iyys5wrc 
+       foreign key (produto_id) 
+       references produtos [42001-200]
+2022-04-17 21:45:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE VENDA PRODUTO[*] (
+       PRODUTO_ID INTEGER NOT NULL,
+        VENDA_ID INTEGER NOT NULL
+    )"; SQL statement:
+
+    create table venda produto (
+       produto_id integer not null,
+        venda_id integer not null
+    ) [42000-200]
+2022-04-17 21:45:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    ALTER TABLE VENDA PRODUTO[*] 
+       ADD CONSTRAINT FKN6VF0SILK4NV15YPWAPMX1MH7 
+       FOREIGN KEY (VENDA_ID) 
+       REFERENCES VENDAS"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+
+    alter table venda produto 
+       add constraint FKn6vf0silk4nv15ypwapmx1mh7 
+       foreign key (venda_id) 
+       references vendas [42001-200]
+2022-04-17 21:45:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    ALTER TABLE VENDA PRODUTO[*] 
+       ADD CONSTRAINT FKHXH84CYR5BIFVNAQ6IYYS5WRC 
+       FOREIGN KEY (PRODUTO_ID) 
+       REFERENCES PRODUTOS"; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+
+    alter table venda produto 
+       add constraint FKhxh84cyr5bifvnaq6iyys5wrc 
+       foreign key (produto_id) 
+       references produtos [42001-200]
