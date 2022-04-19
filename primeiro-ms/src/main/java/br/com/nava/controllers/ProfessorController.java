@@ -128,6 +128,16 @@ public class ProfessorController {
 		professorService.delete(id);
 	}
 	
+	@GetMapping(value = "search-by-name/{name}")
+	public ResponseEntity<List<ProfessorDTO>> searchByName(@PathVariable String name){
+		
+		List<ProfessorDTO> lista = professorService.searchByName(name);
+		
+		return ResponseEntity.ok().body( lista );
+		
+		// return ResponseEntity.ok().body( professorService.searchByName(name) );
+	
+	}
 
 }
 

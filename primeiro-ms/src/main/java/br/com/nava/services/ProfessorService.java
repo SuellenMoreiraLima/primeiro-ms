@@ -17,9 +17,9 @@ public class ProfessorService {
 	@Autowired
 	private ProfessorRepository professorRepository;
 
-	public void mostrar() {
-		System.out.println("mostrar");
-	}
+//	public void mostrar() {
+//		System.out.println("mostrar");
+//	}
 	
 	public List<ProfessorDTO> getAll(){
 		List<ProfessorEntity> lista =  professorRepository.findAll();
@@ -34,19 +34,20 @@ public class ProfessorService {
 		// 1-) Tipo da variável de cada elemento da lista
 		// 2-) nome local da variável 
 		// - 3 lista com elementos a ser percorrido
+		
 		for (ProfessorEntity professorEntity : lista) {						
 			
 //			ProfessorDTO dto = new ProfessorDTO();
-			
+//			
 //			dto.setId( professorEntity.getId() );
 //			dto.setCep( professorEntity.getCep() );
-//			dto.setCpf( professorEntity.getCpf() );
+//			//dto.setCpf( professorEntity.getCpf() );
 //			dto.setNome( professorEntity.getNome() );
 //			dto.setNumero( professorEntity.getNumero() );
 //			dto.setRua( professorEntity.getRua() );
-//			
+			
 //			listaDTO.add(dto);
-			listaDTO.add(professorEntity.toDTO());
+			listaDTO.add( professorEntity.toDTO() );
 		}
 		
 		return listaDTO;		
@@ -134,11 +135,27 @@ public class ProfessorService {
 	public void delete(int id) {
 		
 		professorRepository.deleteById(id);
+		
+//		try {
+//			professorRepository.deleteById(id);
+//		}
+//		catch (Exception e) {
+//			System.out.println("Registro não existe");			
+//		}
+		
+	}
+	
+	public List<ProfessorDTO> searchByName(String nome){
+
+		//List<ProfessorEntity> lista =  professorRepository.findByNomeContains(nome);
+		List<ProfessorEntity> lista =  professorRepository.searchByNome(nome);
+				
+		List<ProfessorDTO> dtos = new ArrayList<>();
+		
+		for (ProfessorEntity professorEntity : lista) {
+			dtos.add( professorEntity.toDTO() );
+		}
+		
+		return dtos;
 	}
 }
-
-
-
-
-
-

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="CalculadoraUtilTests.somarTest" project="primeiro-ms" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="br.com.nava.utils.CalculadoraUtilTests" time="0.136" displayname="CalculadoraUtilTests" uniqueid="[engine:junit-jupiter]/[class:br.com.nava.utils.CalculadoraUtilTests]">
-    <testcase name="somarTest" classname="br.com.nava.utils.CalculadoraUtilTests" time="0.136" displayname="somarTest()" uniqueid="[engine:junit-jupiter]/[class:br.com.nava.utils.CalculadoraUtilTests]/[method:somarTest()]"/>
-  </testsuite>
-</testrun>
